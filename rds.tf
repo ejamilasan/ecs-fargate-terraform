@@ -28,6 +28,6 @@ module "mysql_rds" {
 }
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  name       = "${var.service_name}-subnet-group"
+  name       = "${lower(var.service_name)}-subnet-group"
   subnet_ids = data.aws_subnets.default_vpc_subnets.ids
 }

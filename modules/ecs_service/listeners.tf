@@ -1,13 +1,6 @@
-resource "aws_lb" "lb" {
-  name               = "${var.service_name}-alb"
-  internal           = false
-  load_balancer_type = "application"
-  subnets            = data.aws_subnets.default_vpc_subnets.ids
-}
-
 resource "aws_lb_listener" "lb_listener" {
-  load_balancer_arn = aws_lb.lb.arn
-  port              = 80
+  load_balancer_arn = data.aws_lb.aws_lb.arn
+  port              = var.service_port
   protocol          = "HTTP"
 
   default_action {
@@ -18,7 +11,7 @@ resource "aws_lb_listener" "lb_listener" {
 
 resource "aws_lb_target_group" "lb_target_group" {
   name        = "${var.service_name}-tg"
-  port        = 80
+  port        = var.service_port
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = var.vpc_id

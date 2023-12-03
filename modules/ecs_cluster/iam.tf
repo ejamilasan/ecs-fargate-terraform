@@ -16,7 +16,7 @@ resource "aws_iam_role" "ecs_task_role" {
 }
 
 resource "aws_iam_policy" "ecs_task_role_custom_task_policy" {
-  name = "custom_task_policy"
+  name = "${var.service_name}_custom_task_policy"
   description = "Custom IAM policy for ECS task role"
 
   policy = jsonencode({

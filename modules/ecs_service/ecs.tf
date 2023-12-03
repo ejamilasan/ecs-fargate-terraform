@@ -24,8 +24,8 @@ resource "aws_ecs_task_definition" "task_definition" {
       }
       portMappings = [
         {
-          containerPort = 80
-          hostPort      = 80
+          containerPort = var.service_port
+          hostPort      = var.service_port
           protocol      = "tcp"
         }
       ]
@@ -59,12 +59,12 @@ resource "aws_ecs_task_definition" "task_definition" {
 resource "aws_ecs_service" "ecs_service" {
   name            = var.service_name
   launch_type     = "FARGATE"
-  cluster         = aws_ecs_cluster.ecs_cluster.id
+  cluster         = data.aws_ecs_cluster.ecs_cluster.id
   task_definition = aws_ecs_task_definition.task_definition.arn
   desired_count   = 1
 
   network_configuration {
-    subnets          = aws_lb.lb.subnets
+    subnets          = data.aws_lb.aws_lb.subnets
     security_groups  = [module.ecs_security_group.security_group_id]
     assign_public_ip = true
   }
@@ -72,14 +72,14 @@ resource "aws_ecs_service" "ecs_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.lb_target_group.arn
     container_name   = var.service_name
-    container_port   = 80
+    container_port   = var.service_port
   }
-}
-
-resource "aws_ecs_cluster" "ecs_cluster" {
-  name = var.service_name
 }
 
 data "aws_secretsmanager_secret_version" "db_secret" {
   secret_id = module.mysql_rds.db_instance_master_user_secret_arn
+}
+
+data "aws_ecs_cluster" "ecs_cluster" {
+  cluster_name = var.cluster_name
 }

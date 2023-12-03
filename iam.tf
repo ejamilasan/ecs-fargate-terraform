@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_task_role" {
-  name = var.task_role_name
+  name = "${var.service_name}-TaskRole"
 
   assume_role_policy = jsonencode({
     Version   = "2012-10-17"
@@ -63,7 +63,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_role_policy_attachment_4" {
 }
 
 resource "aws_iam_role" "rds_monitoring_role" {
-  name = var.task_role_name
+  name = "${var.service_name}-RDSMonitoringRole"
 
   assume_role_policy = jsonencode({
     Version   = "2012-10-17"

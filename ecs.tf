@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   container_definitions = jsonencode([
     {
       name             = var.service_name
-      image            = var.ecs_image
+      image            = "wordpress:latest"
       network_mode     = "awsvpc"
       cpu              = 1024
       memory           = 2048
@@ -24,8 +24,8 @@ resource "aws_ecs_task_definition" "task_definition" {
       }
       portMappings = [
         {
-          containerPort = var.service_port
-          hostPort      = var.service_port
+          containerPort = 80
+          hostPort      = 80
           protocol      = "tcp"
         }
       ]
@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "task_definition" {
         },
         {
           name  = "WORDPRESS_DB_NAME"
-          value = var.rds_name
+          value = "${var.service_name}RDS"
         }
       ]
     }
@@ -72,7 +72,7 @@ resource "aws_ecs_service" "ecs_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.lb_target_group.arn
     container_name   = var.service_name
-    container_port   = var.service_port
+    container_port   = 80
   }
 }
 

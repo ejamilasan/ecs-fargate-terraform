@@ -1,26 +1,22 @@
 module "mysql_rds" {
   source = "terraform-aws-modules/rds/aws"
 
-  identifier           = var.identifier
+  identifier           = "${var.service_name}-rds-identifier"
   engine               = "mysql"
   engine_version       = "8.0.35"
   major_engine_version = "8.0"
   family               = "mysql8.0"
-  instance_class       = var.db_size
-  allocated_storage    = var.allocated_storage
+  instance_class       = "db.t2.small"
+  allocated_storage    = 5
 
   iam_database_authentication_enabled = false
 
-  db_name                     = var.rds_name
-  username                    = var.username
+  db_name                     = "${var.service_name}RDS"
+  username                    = "edwin"
   manage_master_user_password = true
   port                        = 3306
-  db_subnet_group_name        = aws_db_subnet_group.rds_subnet_group.arn
+  db_subnet_group_name        = aws_db_subnet_group.rds_subnet_group.name
   vpc_security_group_ids      = [module.rds_security_group.security_group_id]
-
-  maintenance_window      = "Sun:07:00-Sun:09:00" # 1am-3am CDT
-  backup_window           = "09:00-12:00"         # 3am-5am CDT
-  backup_retention_period = 7
 
   create_cloudwatch_log_group = false
 
@@ -32,6 +28,6 @@ module "mysql_rds" {
 }
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  name       = "default-subnet-group"
-  subnet_ids = var.subnet_ids
+  name       = "${var.service_name}-subnet-group"
+  subnet_ids = data.aws_subnets.default_vpc_subnets.ids
 }

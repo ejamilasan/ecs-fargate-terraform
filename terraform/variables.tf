@@ -1,4 +1,4 @@
-variable "cluster_name" { 
+variable "cluster_name" {
   type = string
 }
 
@@ -6,7 +6,7 @@ variable "region" {
   type = string
 }
 
-variable "vpc_id" { 
+variable "vpc_id" {
   type = string
 }
 

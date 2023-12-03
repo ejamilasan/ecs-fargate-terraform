@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "task_definition" {
         },
         {
           name  = "WORDPRESS_DB_NAME"
-          value = "${var.service_name}RDS"
+          value = "${var.service_name}"
         }
       ]
     }

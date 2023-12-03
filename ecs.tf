@@ -77,7 +77,7 @@ resource "aws_ecs_service" "ecs_service" {
 }
 
 resource "aws_ecs_cluster" "ecs_cluster" {
-  name = var.cluster_name
+  name = var.service_name
 }
 
 data "aws_secretsmanager_secret_version" "db_secret" {

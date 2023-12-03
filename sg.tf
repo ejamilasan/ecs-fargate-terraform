@@ -5,7 +5,7 @@ module "ecs_security_group" {
   description = "security group for ECS"
   vpc_id      = var.vpc_id
 
-  ingress_cidr_blocks = [var.personal_ip]
+  ingress_cidr_blocks = var.whitelisted_ips
   ingress_rules       = ["all-tcp"]
   egress_rules        = ["all-all"]
 }

@@ -1,7 +1,7 @@
 module "mysql_rds" {
   source = "terraform-aws-modules/rds/aws"
 
-  identifier           = "${var.service_name}-rds-identifier"
+  identifier           = "${lower(var.service_name)}-rds-identifier"
   engine               = "mysql"
   engine_version       = "8.0.35"
   major_engine_version = "8.0"
@@ -11,7 +11,7 @@ module "mysql_rds" {
 
   iam_database_authentication_enabled = false
 
-  db_name                     = "${var.service_name}RDS"
+  db_name                     = "${var.service_name}"
   username                    = "edwin"
   manage_master_user_password = true
   port                        = 3306

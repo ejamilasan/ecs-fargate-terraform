@@ -4,7 +4,7 @@ variable "vpc_id" { default = "vpc-0203182bfa542a37b" }
 variable "subnet_ids"  { default = ["subnet-0cf91aad132db4cb0", "subnet-074e1f95e078dbaf8"] }
 
 # alb
-variable "target_group_name" { default = "WordpressTargetGroup" }
+variable "target_group_name" { default = "wordpressTargetGroup" }
 variable "alb_name" { default = "wordpressALB" }
 variable "service_port" { default = 80 }
 
@@ -12,7 +12,7 @@ variable "service_port" { default = 80 }
 variable "log_group_name" { default = "ecs/wordpressLogs" }
 
 # iam
-variable "task_role_name" { default = "ecsTaskExecutionRole" }
+variable "task_role_name" { default = "ecsWordpressTaskRole" }
 
 # ecs
 variable "cluster_name" { default = "wordpressEcsCluster" }

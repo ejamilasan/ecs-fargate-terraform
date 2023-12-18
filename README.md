@@ -1,6 +1,6 @@
-# ecs-fargate-project
+# ecs-fargate-terraform
 
-![pre-commit](https://github.com/ejamilasan/ecs-fargate/actions/workflows/pre-commit.yml/badge.svg)
+![pre-commit](https://github.com/ejamilasan/ecs-fargate-terraform/actions/workflows/pre-commit.yml/badge.svg)
 
 ## overview
 This project is for deploying a demo Wordpress website on AWS ECS Fargate.

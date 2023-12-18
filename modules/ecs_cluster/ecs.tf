@@ -8,16 +8,16 @@ resource "aws_ecs_task_definition" "task_definition" {
 
   container_definitions = jsonencode([
     {
-      name             = var.service_name
-      image            = "wordpress:latest"
-      network_mode     = "awsvpc"
-      cpu              = 1024
-      memory           = 2048
-      essential        = true
+      name         = var.service_name
+      image        = "wordpress:latest"
+      network_mode = "awsvpc"
+      cpu          = 1024
+      memory       = 2048
+      essential    = true
       logConfiguration = {
         logDriver = "awslogs"
-        options   = {
-          awslogs-group         = "${aws_cloudwatch_log_group.ecs_log_group.name}"
+        options = {
+          awslogs-group         = aws_cloudwatch_log_group.ecs_log_group.name
           awslogs-region        = var.region
           awslogs-stream-prefix = var.service_name
         }
@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "task_definition" {
         },
         {
           name  = "WORDPRESS_DB_NAME"
-          value = "${var.service_name}"
+          value = var.service_name
         }
       ]
     }

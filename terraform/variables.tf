@@ -1,15 +1,19 @@
 variable "cluster_name" {
-  type = string
+  default = "sampleCluster"
+  type    = string
 }
 
 variable "region" {
-  type = string
+  default = "us-west-2"
+  type    = string
 }
 
 variable "vpc_id" {
-  type = string
+  default = "vpc-12345"
+  type    = string
 }
 
 variable "whitelisted_ips" {
-  type = list
+  default = ["10.0.0.0/16"]
+  type    = list(any)
 }

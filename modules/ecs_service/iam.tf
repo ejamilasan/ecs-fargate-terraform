@@ -2,10 +2,10 @@ resource "aws_iam_role" "ecs_task_role" {
   name = "${var.service_name}-TaskRole"
 
   assume_role_policy = jsonencode({
-    Version   = "2012-10-17"
+    Version = "2012-10-17"
     Statement = [
       {
-        Effect    = "Allow"
+        Effect = "Allow"
         Principal = {
           Service = "ecs-tasks.amazonaws.com"
         }
@@ -16,11 +16,11 @@ resource "aws_iam_role" "ecs_task_role" {
 }
 
 resource "aws_iam_policy" "ecs_task_role_custom_task_policy" {
-  name = "${var.service_name}_custom_task_policy"
+  name        = "${var.service_name}_custom_task_policy"
   description = "Custom IAM policy for ECS task role"
 
   policy = jsonencode({
-    Version   = "2012-10-17"
+    Version = "2012-10-17"
     Statement = [
       {
         Effect = "Allow"
@@ -66,7 +66,7 @@ resource "aws_iam_role" "rds_monitoring_role" {
   name = "${var.service_name}-RDSMonitoringRole"
 
   assume_role_policy = jsonencode({
-    Version   = "2012-10-17"
+    Version = "2012-10-17"
     Statement = [
       {
         Effect = "Allow"

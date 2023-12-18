@@ -1,12 +1,12 @@
-variable "cluster_name" { 
+variable "cluster_name" {
   type = string
 }
 
-variable "service_name" { 
+variable "service_name" {
   type = string
 }
 
-variable "service_port" { 
+variable "service_port" {
   type = number
 }
 
@@ -14,10 +14,10 @@ variable "region" {
   type = string
 }
 
-variable "vpc_id" { 
+variable "vpc_id" {
   type = string
 }
 
 variable "whitelisted_ips" {
-  type = list
+  type = list(any)
 }

@@ -1,12 +1,14 @@
 # ecs-fargate-project
 
+![pre-commit](https://github.com/ejamilasan/ecs-fargate/actions/workflows/pre-commit.yml/badge.svg)
+
 ## overview
-This project is for deploying a demo Wordpress website on AWS ECS Fargate. 
+This project is for deploying a demo Wordpress website on AWS ECS Fargate.
 
 ## modules
 **./modules/ecs_cluster**
   * This module creates the ECS Cluster, ECS Service, & ALB.
-    ```
+    ```yaml
     module "ecs_cluster" {
       source = "git@github.com:ejamilasan/ecs-fargate-project.git//modules/ecs_cluster"
 
@@ -21,7 +23,7 @@ This project is for deploying a demo Wordpress website on AWS ECS Fargate.
 
 **./modules/ecs_service**
   * This module creates an ECS Service on an existing ECS Cluster with a load balancer.
-    ```
+    ```yaml
     module "ecs_service" {
       source = "git@github.com:ejamilasan/ecs-fargate-project.git//modules/ecs_service"
 
@@ -45,14 +47,14 @@ This project is for deploying a demo Wordpress website on AWS ECS Fargate.
 ## terraform
   1. You must be authenticated to you AWS account (cli).
   2. Create `./terraform/variables.tfvars` with the following params:
-      ```
-      region = "us-east-1" 
+      ```yaml
+      region = "us-east-1"
       vpc_id = "vpc-12345"
       whitelisted_ips = ["x.x.x.x/x"]
       cluster_name = "wordpressdemo"
       ```
   2. Go to the `./terraform` directory then run:
-      ```
+      ```yaml
       terraform init
       terraform apply -var-file=variables.tfvars
       ```

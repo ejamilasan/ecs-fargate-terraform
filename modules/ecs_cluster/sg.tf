@@ -1,5 +1,6 @@
 module "ecs_security_group" {
-  source = "terraform-aws-modules/security-group/aws"
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "5.1.0"
 
   name        = "${var.service_name}-ecs-sg"
   description = "security group for ECS"

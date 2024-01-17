@@ -18,7 +18,7 @@ provider "aws" {
 }
 
 module "wordpress_cluster" {
-  source = "git@github.com:ejamilasan/ecs-fargate-project.git//modules/ecs_cluster"
+  source = "git@github.com:ejamilasan/ecs-fargate-terraform.git//modules/ecs_cluster"
 
   cluster_name    = var.cluster_name
   service_name    = "wordpressapp1"
@@ -29,7 +29,7 @@ module "wordpress_cluster" {
 }
 
 # module "wordpress_service_2" {
-#   source = "git@github.com:ejamilasan/ecs-fargate-project.git//modules/ecs_service"
+#   source = "git@github.com:ejamilasan/ecs-fargate-terraform.git//modules/ecs_service"
 
 #   cluster_name    = var.cluster_name
 #   service_name    = "wordpressapp2"

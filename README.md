@@ -10,7 +10,7 @@ This project is for deploying a demo Wordpress website on AWS ECS Fargate.
   * This module creates the ECS Cluster, ECS Service, & ALB.
     ```yaml
     module "ecs_cluster" {
-      source = "git@github.com:ejamilasan/ecs-fargate-project.git//modules/ecs_cluster"
+      source = "git@github.com:ejamilasan/ecs-fargate-terraform.git//modules/ecs_cluster"
 
       cluster_name    = var.cluster_name
       service_name    = "wordpressapp1"
@@ -25,7 +25,7 @@ This project is for deploying a demo Wordpress website on AWS ECS Fargate.
   * This module creates an ECS Service on an existing ECS Cluster with a load balancer.
     ```yaml
     module "ecs_service" {
-      source = "git@github.com:ejamilasan/ecs-fargate-project.git//modules/ecs_service"
+      source = "git@github.com:ejamilasan/ecs-fargate-terraform.git//modules/ecs_service"
 
       cluster_name    = var.cluster_name
       service_name    = "wordpressapp2"
